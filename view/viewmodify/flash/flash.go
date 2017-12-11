@@ -7,8 +7,8 @@ import (
 
 	"yana/yana-core/lib/flight"
 
-	"github.com/Dlacreme/gocore/view"
-	flashlib "github.com/Dlacreme/gocore/webtools/flash"
+	"github.com/Dlacreme/httpd/view"
+	flashlib "github.com/Dlacreme/httpd/webtools/flash"
 )
 
 // Modify adds the flashes to the view.

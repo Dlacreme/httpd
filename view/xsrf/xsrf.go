@@ -4,7 +4,7 @@ package xsrf
 import (
 	"net/http"
 
-	"github.com/Dlacreme/gocore/view"
+	"github.com/Dlacreme/httpd/view"
 	"github.com/gorilla/csrf"
 )
 

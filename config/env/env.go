@@ -4,14 +4,14 @@ package env
 import (
 	"encoding/json"
 
-	"github.com/Dlacreme/gocore/back/email"
-	"github.com/Dlacreme/gocore/back/server"
-	"github.com/Dlacreme/gocore/back/session"
-	"github.com/Dlacreme/gocore/back/storage/driver/mysql"
-	"github.com/Dlacreme/gocore/config/jsonconfig"
-	"github.com/Dlacreme/gocore/view"
-	"github.com/Dlacreme/gocore/view/asset"
-	"github.com/Dlacreme/gocore/webtools/form"
+	"github.com/Dlacreme/httpd/back/email"
+	"github.com/Dlacreme/httpd/back/server"
+	"github.com/Dlacreme/httpd/back/session"
+	"github.com/Dlacreme/httpd/back/storage/driver/mysql"
+	"github.com/Dlacreme/httpd/config/jsonconfig"
+	"github.com/Dlacreme/httpd/view"
+	"github.com/Dlacreme/httpd/view/asset"
+	"github.com/Dlacreme/httpd/webtools/form"
 )
 
 // *****************************************************************************

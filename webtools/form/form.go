@@ -12,7 +12,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/Dlacreme/gocore/back/uuid"
+	"github.com/Dlacreme/httpd/back/uuid"
 )
 
 var (

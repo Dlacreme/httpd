@@ -4,8 +4,8 @@ package authlevel
 import (
 	"net/http"
 
-	"github.com/Dlacreme/gocore/back/flight"
-	"github.com/Dlacreme/gocore/view"
+	"github.com/Dlacreme/httpd/back/flight"
+	"github.com/Dlacreme/httpd/view"
 )
 
 // Modify sets AuthLevel in the template to auth if the user is authenticated.

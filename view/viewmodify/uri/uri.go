@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"path"
 
-	"github.com/Dlacreme/gocore/view"
+	"github.com/Dlacreme/httpd/view"
 )
 
 // Modify sets BaseURI, CurrentURI, ParentURI, and the GrandparentURI

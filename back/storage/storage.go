@@ -4,9 +4,9 @@ package storage
 import (
 	"encoding/json"
 
-	"github.com/Dlacreme/gocore/jsonconfig"
-	"github.com/Dlacreme/gocore/storage/driver/mysql"
-	"github.com/Dlacreme/gocore/storage/driver/postgresql"
+	"github.com/Dlacreme/httpd/jsonconfig"
+	"github.com/Dlacreme/httpd/storage/driver/mysql"
+	"github.com/Dlacreme/httpd/storage/driver/postgresql"
 )
 
 // Info contains the database connection information for the different storage.

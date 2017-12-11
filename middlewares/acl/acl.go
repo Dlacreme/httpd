@@ -5,7 +5,7 @@ package acl
 import (
 	"net/http"
 
-	"github.com/Dlacreme/gocore/back/flight"
+	"github.com/Dlacreme/httpd/back/flight"
 )
 
 func rejectRequest(w http.ResponseWriter, r *http.Request) {
