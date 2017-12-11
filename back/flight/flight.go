@@ -7,12 +7,12 @@ import (
 	"net/http"
 	"sync"
 
-	"yana/yana-core/lib/env"
+	"github.com/Dlacreme/httpd/config/env"
 
-	"github.com/blue-jay/core/flash"
-	"github.com/blue-jay/core/form"
-	"github.com/blue-jay/core/router"
-	"github.com/blue-jay/core/view"
+	"github.com/Dlacreme/httpd/back/router"
+	"github.com/Dlacreme/httpd/view"
+	"github.com/Dlacreme/httpd/webtools/flash"
+	"github.com/Dlacreme/httpd/webtools/form"
 
 	"github.com/gorilla/sessions"
 	"github.com/jmoiron/sqlx"
