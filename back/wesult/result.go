@@ -43,4 +43,5 @@ func (res *Result) RenderView(w http.ResponseWriter, r *http.Request, v *view.In
 	// v.Vars["model"] = res.Output
 	// v.Vars["error"] = res.Error
 	v.Render(w, r)
+
 }

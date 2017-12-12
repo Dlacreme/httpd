@@ -117,7 +117,6 @@ func (v *Info) Render(w http.ResponseWriter, r *http.Request) error {
 
 	// Get the modify list
 	sc := v.modify()
-
 	// Loop through and call each one
 	for _, fn := range sc {
 		fn(w, r, v)

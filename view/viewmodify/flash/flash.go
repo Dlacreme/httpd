@@ -18,6 +18,7 @@ func Modify(w http.ResponseWriter, r *http.Request, v *view.Info) {
 	// Get the flashes for the template
 	if flashes := c.Sess.Flashes(); len(flashes) > 0 {
 		v.Vars["flashes"] = make([]flashlib.Info, len(flashes))
+
 		for i, f := range flashes {
 			switch f.(type) {
 			case flashlib.Info:
@@ -29,4 +30,5 @@ func Modify(w http.ResponseWriter, r *http.Request, v *view.Info) {
 		}
 		c.Sess.Save(r, w)
 	}
+
 }

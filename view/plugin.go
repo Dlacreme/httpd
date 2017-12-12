@@ -20,7 +20,6 @@ func (c *Info) modify() []ModifyFunc {
 	c.modifyMutex.RLock()
 	list := c.modifyList
 	c.modifyMutex.RUnlock()
-
 	return list
 }
 
