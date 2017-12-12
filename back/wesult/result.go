@@ -19,11 +19,6 @@ type Result struct {
 	Error  *werror.Error
 }
 
-// IInput is used as input for all YANA-core query
-type IInput interface {
-	Check() *werror.Error
-}
-
 // IOutput is used a output of all YANA-core query
 type IOutput interface {
 }
@@ -40,8 +35,7 @@ func (res *Result) ToJson(w http.ResponseWriter) {
 
 // RenderView will display appropriate view
 func (res *Result) RenderView(w http.ResponseWriter, r *http.Request, v *view.Info) {
-	// v.Vars["model"] = res.Output
-	// v.Vars["error"] = res.Error
+	v.Vars["model"] = res.Output
+	v.Vars["error"] = res.Error
 	v.Render(w, r)
-
 }
