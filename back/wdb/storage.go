@@ -1,18 +1,16 @@
 // Package storage loads the configuration file with only storage information.
-package storage
+package wdb
 
 import (
 	"encoding/json"
 
-	"github.com/Dlacreme/httpd/jsonconfig"
-	"github.com/Dlacreme/httpd/storage/driver/mysql"
-	"github.com/Dlacreme/httpd/storage/driver/postgresql"
+	"github.com/Dlacreme/httpd/back/wdb/driver/mysql"
+	"github.com/Dlacreme/httpd/config/jsonconfig"
 )
 
 // Info contains the database connection information for the different storage.
 type Info struct {
-	MySQL      mysql.Info      `json:"MySQL"`
-	PostgreSQL postgresql.Info `json:"PostgreSQL"`
+	MySQL mysql.Info `json:"MySQL"`
 }
 
 // ParseJSON unmarshals bytes to structs.

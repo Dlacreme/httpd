@@ -2,7 +2,6 @@
 package flight
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"sync"
@@ -10,6 +9,7 @@ import (
 	"github.com/Dlacreme/httpd/config/env"
 
 	"github.com/Dlacreme/httpd/back/router"
+	"github.com/Dlacreme/httpd/back/session"
 	"github.com/Dlacreme/httpd/view"
 	"github.com/Dlacreme/httpd/webtools/flash"
 	"github.com/Dlacreme/httpd/webtools/form"
@@ -45,35 +45,33 @@ func StoreDB(db *sqlx.DB) {
 type Info struct {
 	Config env.Info
 	Sess   *sessions.Session
-	UserID string
 	W      http.ResponseWriter
 	R      *http.Request
 	View   view.Info
 	DB     *sqlx.DB
+	User   interface{}
 }
 
 // Context returns the application settings.
 func Context(w http.ResponseWriter, r *http.Request) Info {
-	var id string
-
+	var user interface{}
 	// Get the session
 	sess, err := configInfo.Session.Instance(r)
 
 	// If the session is valid
 	if err == nil {
-		// Get the user id
-		id = fmt.Sprintf("%v", sess.Values["id"])
+		user = session.BuildUser(sess)
 	}
 
 	mutex.RLock()
 	i := Info{
 		Config: configInfo,
 		Sess:   sess,
-		UserID: id,
 		W:      w,
 		R:      r,
 		View:   configInfo.View,
 		DB:     dbInfo,
+		User:   user,
 	}
 	mutex.RUnlock()
 

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/Dlacreme/httpd/back/flight"
 	"github.com/Dlacreme/httpd/back/werror"
 	"github.com/Dlacreme/httpd/view"
 )
@@ -35,6 +36,8 @@ func (res *Result) ToJson(w http.ResponseWriter) {
 
 // RenderView will display appropriate view
 func (res *Result) RenderView(w http.ResponseWriter, r *http.Request, v *view.Info) {
+	c := flight.Context(w, r)
+	v.Vars["user"] = c.User
 	v.Vars["model"] = res.Output
 	v.Vars["error"] = res.Error
 	v.Render(w, r)

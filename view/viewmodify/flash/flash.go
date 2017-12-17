@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"yana/yana-core/lib/flight"
+	"github.com/Dlacreme/httpd/back/flight"
 
 	"github.com/Dlacreme/httpd/view"
 	flashlib "github.com/Dlacreme/httpd/webtools/flash"

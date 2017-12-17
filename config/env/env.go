@@ -7,7 +7,7 @@ import (
 	"github.com/Dlacreme/httpd/back/email"
 	"github.com/Dlacreme/httpd/back/server"
 	"github.com/Dlacreme/httpd/back/session"
-	"github.com/Dlacreme/httpd/back/storage/driver/mysql"
+	"github.com/Dlacreme/httpd/back/wdb/driver/mysql"
 	"github.com/Dlacreme/httpd/config/jsonconfig"
 	"github.com/Dlacreme/httpd/view"
 	"github.com/Dlacreme/httpd/view/asset"
