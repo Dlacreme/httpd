@@ -14,7 +14,7 @@ func Modify(w http.ResponseWriter, r *http.Request, v *view.Info) {
 	c := flight.Context(w, r)
 
 	// Set the AuthLevel to auth if the user is logged in
-	if c.Sess.Values["id"] != nil {
+	if c.Sess.Values["UserId"] != nil {
 		v.Vars["AuthLevel"] = "auth"
 	} else {
 		v.Vars["AuthLevel"] = "anon"
