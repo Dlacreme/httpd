@@ -62,9 +62,77 @@ func (v *Info) Base(base string) *Info {
 	return v
 }
 
+// Get will get the brut view without layout
+func (v *Info) Get(w http.ResponseWriter, r *http.Request) error {
+
+	// Add the child templates
+	v.templates = append(v.templates, v.childTemplates...)
+
+	// Set the base template
+	baseTemplate := v.templates[0]
+
+	// Set the key name for caching
+	key := strings.Join(v.templates, ":")
+
+	// Get the template collection from cache
+	v.mutex.RLock()
+	tc, ok := v.templateCollection[key]
+	v.mutex.RUnlock()
+
+	// Get the extend list
+	pc := v.extend()
+
+	// If the template collection is not cached or caching is disabled
+	if !ok || !v.Caching {
+		// Loop through each template and test the full path
+		for i, name := range v.templates {
+			// Get the absolute path of the root template
+			path, err := filepath.Abs(v.Folder + string(os.PathSeparator) + name + "." + v.Extension)
+			if err != nil {
+				http.Error(w, "Template Path Error: "+err.Error(), http.StatusInternalServerError)
+				return err
+			}
+			// Store the full template path
+			v.templates[i] = path
+		}
+
+		// Determine if there is an error in the template syntax
+		templates, err := template.New(key).Funcs(pc).ParseFiles(v.templates...)
+		if err != nil {
+			http.Error(w, "Template Parse Error: "+err.Error(), http.StatusInternalServerError)
+			return err
+		}
+
+		// Cache the template collection
+		v.mutex.Lock()
+		v.templateCollection[key] = templates
+		v.mutex.Unlock()
+
+		// Save the template collection
+		tc = templates
+	}
+
+	// Get the modify list
+	sc := v.modify()
+	// Loop through and call each one
+	for _, fn := range sc {
+		fn(w, r, v)
+	}
+
+	// Display the content to the screen
+	err := tc.Funcs(pc).ExecuteTemplate(w, baseTemplate+"."+v.Extension, v.Vars)
+
+	if err != nil {
+		http.Error(w, "Template File Error: "+err.Error(), http.StatusInternalServerError)
+	}
+
+	return err
+}
+
 // Render parses one or more templates and outputs to the screen.
 // Also returns an error if anything is wrong.
 func (v *Info) Render(w http.ResponseWriter, r *http.Request) error {
+
 	// Add the base template
 	v.templates = append([]string{v.base}, v.templates...)
 

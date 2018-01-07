@@ -42,3 +42,12 @@ func (res *Result) RenderView(w http.ResponseWriter, r *http.Request, v *view.In
 	v.Vars["error"] = res.Error
 	v.Render(w, r)
 }
+
+// Partial will render the view without layout
+func (res *Result) Partial(w http.ResponseWriter, r *http.Request, v *view.Info) {
+	c := flight.Context(w, r)
+	v.Vars["user"] = c.User
+	v.Vars["model"] = res.Output
+	v.Vars["error"] = res.Error
+	v.Get(w, r)
+}
