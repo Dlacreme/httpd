@@ -25,6 +25,7 @@ type Info struct {
 
 	Vars      map[string]interface{}
 	base      string
+	partial   string
 	templates []string
 
 	childTemplates []string
@@ -48,6 +49,7 @@ func (v *Info) New(templateList ...string) *Info {
 	v.Vars = make(map[string]interface{})
 	v.templates = append(v.templates, templateList...)
 	v.base = v.rootTemplate
+	v.partial = "partial"
 
 	return v
 }
@@ -64,6 +66,8 @@ func (v *Info) Base(base string) *Info {
 
 // Get will get the brut view without layout
 func (v *Info) Get(w http.ResponseWriter, r *http.Request) error {
+	// Add the base template for partial
+	v.templates = append([]string{v.partial}, v.templates...)
 
 	// Add the child templates
 	v.templates = append(v.templates, v.childTemplates...)
